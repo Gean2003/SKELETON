@@ -127,16 +127,14 @@ const updateMyUser = (req, res) => {
 
 const deletMyUser = (req, res) => {
     const id = req.user.id ;
-    usersControllers.deleteUser(id)
-        .then(data => {
-            if (data) {
-                res.status(204).json()
-            }
-        })
-        .catch(err => {
+    usersControllers.updateUser(id, {status: 'Inactive'})
+        .then( () => {
+            res.status(200).json({message: 'Your user was deletd succesfully'})
+        } )
+        .catch( err => {
             res.status(400).json({message: err.message})
-
-        })
+        } )
+        
 } ;
 
 module.exports = {

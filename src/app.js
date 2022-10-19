@@ -17,6 +17,7 @@ app.get('/', (req, res)=> {
 
 const userRouter =  require('./users/users.router');
 const authRouter = require('./auth/auth.router')
+const initModels = require('./models/init.models')
 
 app.use('/api/v1/users', userRouter)
 app.use('/api/v1/auth',authRouter)
@@ -37,6 +38,7 @@ db.sync()
         console.log(err);
     } )
 
+initModels()
 
 app.listen(port, () => {
     console.log(`server on port ${port}`)
